@@ -78,6 +78,8 @@ total_read_time = 0
 
 index = 1
 lastTime = int(time.time()) - 30
+READ_NUM = READ_NUM + random.randint(2,20)
+logging.info(f"📕 尝试阅读次数 {READ_NUM} ")
 while index <= READ_NUM:
     data.pop('s')
     data['b'] = random.choice(book)
