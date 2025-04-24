@@ -68,6 +68,14 @@ def refresh_cookie():
         raise Exception(ERROR_CODE)
 
 refresh_cookie()
+
+# 阅读开始前等待时间
+begin_wait_time = random.randint(30, 600)
+logging.info(f"⌛ 开始等待 {begin_wait_time} 秒后再进入阅读...")
+time.sleep(begin_wait_time)
+
+total_read_time = 0
+
 index = 1
 lastTime = int(time.time()) - 30
 while index <= READ_NUM:
@@ -92,8 +100,11 @@ while index <= READ_NUM:
         if 'synckey' in resData:
             lastTime = thisTime
             index += 1
-            time.sleep(30)
-            logging.info(f"✅ 阅读成功，阅读进度：{(index - 1) * 0.5} 分钟")
+            # 阅读间隔时间，30 到 60 秒之间
+            read_wait_time = random.randint(30, 60)
+            time.sleep(read_wait_time)
+            total_read_time += read_wait_time
+            logging.info(f"✅ 阅读成功，阅读进度：{total_read_time} 秒")
         else:
             logging.warning("❌ 无synckey, 尝试修复...")
             fix_no_synckey()
