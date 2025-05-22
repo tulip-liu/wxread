@@ -102,11 +102,11 @@ while index <= READ_NUM:
         if 'synckey' in resData:
             lastTime = thisTime
             index += 1
-            # 阅读间隔时间，1 到 60 秒之间
-            read_wait_time = random.randint(1, 60)
+            # 阅读间隔时间，5 到 60 秒之间
+            read_wait_time = random.randint(5, 60)
             time.sleep(read_wait_time)
             total_read_time += read_wait_time
-            logging.info(f"✅ 阅读成功，阅读进度：{total_read_time} 秒")
+            logging.info(f"✅ 阅读成功，阅读进度：{total_read_time} 秒, {total_read_time / 60} 分")
         else:
             logging.warning("❌ 无synckey, 尝试修复...")
             fix_no_synckey()
