@@ -70,7 +70,7 @@ def refresh_cookie():
 refresh_cookie()
 
 # 阅读开始前等待时间
-begin_wait_time = random.randint(30, 600)
+begin_wait_time = random.randint(30, 1200)
 logging.info(f"⌛ 开始等待 {begin_wait_time} 秒后再进入阅读...")
 time.sleep(begin_wait_time)
 
@@ -78,7 +78,7 @@ total_read_time = 0
 
 index = 1
 lastTime = int(time.time()) - 30
-READ_NUM = READ_NUM + random.randint(2,30)
+READ_NUM = READ_NUM + random.randint(2,60)
 logging.info(f"📕 尝试阅读次数 {READ_NUM} ")
 while index <= READ_NUM:
     data.pop('s')
@@ -102,8 +102,8 @@ while index <= READ_NUM:
         if 'synckey' in resData:
             lastTime = thisTime
             index += 1
-            # 阅读间隔时间，10 到 60 秒之间
-            read_wait_time = random.randint(10, 60)
+            # 阅读间隔时间，1 到 60 秒之间
+            read_wait_time = random.randint(1, 60)
             time.sleep(read_wait_time)
             total_read_time += read_wait_time
             logging.info(f"✅ 阅读成功，阅读进度：{total_read_time} 秒")
